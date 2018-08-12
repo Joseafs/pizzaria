@@ -1,12 +1,50 @@
 <!DOCTYPE HTML>
-<html>
-    <? include("web_head.php");?>
-    <body class="<?=$metatags['class']?>">
-        <!--<div class='anm-loading'><div class="ib-load"><i></i><i></i><i></i><i></i><i></i></div></div>-->
-        <section class="container-fluid text-center pos-rel ovr-h">
-            <div class="pdg-10 bg-red text-success bg-success">
-                <div id="app">
-                    {{ message }}
+<html id="website">
+    <head>
+        <title>Delivery de Pizzas UDS</title>
+        <!-- Loading -->
+        <link type="text/css" rel="stylesheet" href="<?=$pathSite?>library/css/z-loading.css">
+        
+        <meta name="description" content="<?=$meta['info']?>">
+        <meta name="keywords" content="<?=$meta['key']?>">
+        <meta name="author" content="Byte a Byte - Jose Andre Fernandes Sabino (Joseafs)_(dev10)">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--<meta name="robots" content="noindex, nofollow" />-->
+    
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#fc2d1d">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#fc2d1d">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="#fc2d1d">
+    </head>
+    <body >
+        
+        <section id="pedido" class="container-fluid text-center pos-rel ovr-h">
+            <div class='row pdg-t-30'>
+                <div  class="col-sm-4 col-xs-12">
+                    <div >{{ teste }}</div>
+
+                    <form>
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="blabla">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control selectpicker show-tick" name="tamanho" required data-live-search="true" data-size="6" title="Tamanho">
+                                <option v-for="(index,item) in tamanho" :key="index" data-subtext="{{item.valor}}" value="{{item.id}}">
+                                    {{ item.titulo }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control selectpicker show-tick" name="sabor" required data-live-search="true" data-size="6" title="Sabor">
+                                <option v-for="(index,item) in sabor" :key="index" data-subtext="{{item.valor}}" value="{{item.id}}">
+                                    {{ item.titulo }}
+                                </option>
+                            </select>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -14,26 +52,41 @@
         <link type="text/css" rel="stylesheet" href="library/bootstrap/css/bootstrap-theme.min.css">
         <link type="text/css" rel="stylesheet" href="library/bootstrap/css/bootstrap-select.css">
 
-        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.css"> -->
+        <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.css">
         <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.sm-md-gt.css"> -->
         <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.mana.css"> -->
-        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-style.css"> -->
+        <link type="text/css" rel="stylesheet" href="library/css/z-style.css">
         <script type="text/javascript" src="library/js/jquery.min.js"></script>
-     
-        <script type="text/javascript" src="library/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="library/bootstrap/js/bootstrap-select.min.js"></script>
+        
         <script type="text/javascript" src="library/js/vue.js"></script>
-        <!-- <script type="text/javascript" src="library/js/jquery.mask.min.js"></script> -->
-        <!-- <script type="text/javascript" src="library/js/jquery.fancybox.min.js"></script> -->
-
-        <!-- <script type="text/javascript" src="library/js/script.js"></script> -->
         <script>
             new Vue({
-                el: '#app',
+                el: '#pedido',
                 data: {
-                    message: 'Hello Vue.js!'
-                }
+                    teste: 'Hello Vue.js!',
+                    tamanho: [
+                        {id: 0, titulo: 'Pequena', valor: 'R$ 20,00', tempo: '15'},
+                        {id: 0, titulo: 'Média', valor: 'R$ 30,00', tempo: '20'},
+                        {id: 0, titulo: 'Grande', valor: 'R$ 40,00', tempo: '25'}
+                    ],
+                    sabor: [
+                        {id: 0, titulo: 'Calabresa', valor: '', tempo: ''},
+                        {id: 0, titulo: 'Marguerita', valor: '', tempo: ''},
+                        {id: 0, titulo: 'Portuguesa', valor: '', tempo: '5'}
+                    ],
+                    adicionais: [
+                        {id: 0, titulo: 'Calabresa', valor: '', tempo: ''},
+                        {id: 0, titulo: 'Marguerita', valor: '', tempo: ''},
+                        {id: 0, titulo: 'Portuguesa', valor: '', tempo: '5'}
+                    ],
+                },
             })
-</script>
+        </script>
+
+        <script type="text/javascript" src="library/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="library/bootstrap/js/bootstrap-select.min.js"></script>
+        <!-- <script type="text/javascript" src="library/js/jquery.mask.min.js"></script> -->
+        <!-- <script type="text/javascript" src="library/js/jquery.fancybox.min.js"></script> -->
+        <script type="text/javascript" src="library/js/script.js"></script>
     </body>
 </html>
