@@ -1,0 +1,133 @@
+/* -------------------------------------------------------------------------- */
+/* __ v4.3 _ Z Endless Dreams ____ 18/06/2018 _ Jose Andre Fernandes Sabino _ */
+/* -------------------------------------------------------Joseafs------------ */
+/* -------------------------------------------------------------------------- */
+/* d/s - transitions */
+/* -------------------------- */
+[class*="live-off"], [class*="live-off"]:before, [class*="live-off"]:after{-webkit-transition-duration: .0s;-webkit-transition: all ease-in-out .0s;transition: all ease-in-out .0s;-moz-transition: all ease-in-out .0s;}
+[class*="live-1d"], [class*="live-1d"]:before, [class*="live-1d"]:after{-webkit-transition-duration: .1s;-webkit-transition: all ease-in-out .1s;transition: all ease-in-out .1s;-moz-transition: all ease-in-out .1s;}
+[class*="live-2d"], [class*="live-2d"]:before, [class*="live-2d"]:after{-webkit-transition-duration: .2s;-webkit-transition: all ease-in-out .2s;transition: all ease-in-out .2s;-moz-transition: all ease-in-out .2s;}
+[class*="live-3d"], [class*="live-3d"]:before, [class*="live-3d"]:after{-webkit-transition-duration: .3s;-webkit-transition: all ease-in-out .3s;transition: all ease-in-out .3s;-moz-transition: all ease-in-out .3s;}
+[class*="live-5d"], [class*="live-5d"]:before, [class*="live-5d"]:after{-webkit-transition-duration: .5s;-webkit-transition: all ease-in-out .5s;transition: all ease-in-out .5s;-moz-transition: all ease-in-out .5s;}
+/* -------------------------- */
+[class*="live-1s"], [class*="live-1s"]:before, [class*="live-1s"]:after{-webkit-transition-duration: 1s;-webkit-transition: all ease-in-out 1s;transition: all ease-in-out 1s;-moz-transition: all ease-in-out 1s;}
+[class*="live-1s5d"], [class*="live-1s5d"]:before,[class*="live-1s5d"]:after{-webkit-transition-duration: 1.5s;-webkit-transition: all ease-in-out 1.5s;transition: all ease-in-out 1.5s ;-moz-transition: all ease-in-out 1.5s;}
+/* -------------------------- */
+/* after op off */
+[class*="op-live"]:active, [class*="op-live"]:active:before, [class*="op-live"]:active:after{transition: none; -webkit-transition: none; -webkit-transition-duration: 0;}
+/* -------------------------- */
+.act-zoom:hover.son-zoom, .act-zoom:hover .son-zoom{transform: scale(1.05); -webkit-transform: scale(1.05);}
+.act-zoom:hover.son-zoom-2, .act-zoom:hover .son-zoom-2{transform: scale(1.2); -webkit-transform: scale(1.2);}
+.act-zoom:hover.son-zoom-3, .act-zoom:hover .son-zoom-3{transform: scale(1.3); -webkit-transform: scale(1.3);}
+/* -------------------------- */
+.act-actv:active{transform: scale(.97)!important;}
+.act-actv-997:active{transform: scale(.997)!important;}
+.act-actv-2x:active{transform: scale(1.13)!important;}
+/* -------------------------- */
+.act-rtt:hover .son-rtt{transform: rotate(360deg); -webkit-transform: rotate(360deg);}
+/* -------------------------- */
+.ripple-wrapper{z-index: 999999;}
+.act-rp-03 .ripple-wrapper{ background-color: rgba(0,0,0,.3);}
+.act-rp-red .ripple-wrapper{ background-color: rgba(228, 29, 48, .3);}
+.act-rp-blue .ripple-wrapper{ background-color: rgba(0, 60, 88, .3);}
+.act-rp-green .ripple-wrapper{ background-color: rgba(121, 188, 33, .3);}
+/* -------------------------- */
+.act-opc:hover.son-opc, .act-opc:hover .son-opc{opacity: 1!important;}
+.act-opc:hover.son-opc-0, .act-opc:hover .son-opc-0{opacity: 0!important;}
+/* get .opc classes do make this combo */
+/* -------------------------- */
+/* Shadows */
+/*[class*='act-sdw']{position: relative;}*/
+.act-sdw:after{
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+/*.act-sdw:hover:after{background-color: rgba(0,0,0, .1)!important;}*/
+/*.act-sdw-turn:hover .son-sdw-turn{background-color: transparent!important;}*/
+
+.act-sdw:hover .son-sdw{background-color: rgba(0,0,0, .1)!important;}
+
+.act-sdw-floor:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 98%;
+    height: 20px;
+    z-index: -1;
+    transform: translate(-50%,7%);
+    background: rgba(0,0,0,.08);
+    border-radius: 36px;
+    box-shadow: 0 0 30px 10px rgba(0,0,0,.1);
+}
+
+.act-sdw-btn:hover{box-shadow: 0 8px 16px 1px rgba(0,0,0, .2); transform: scale(1.01);}
+.act-sdw-line-1:hover{box-shadow: 0 4px 0px 0px #fff;}
+.act-sdw-base:hover{box-shadow: 0 8px 16px 1px rgba(0,0,0, .2);}
+
+/* -------------------------- */
+/* Shadows - BOX */
+.act-sdw-box.son-sdw, .act-sdw-box .son-sdw{box-shadow: 0 10px 50px 1px rgba(0,0,0,.1);}
+.act-sdw-box:hover.son-sdw, .act-sdw-box:hover .son-sdw{box-shadow: 0 10px 30px 1px rgba(0,0,0,.3);}
+/* -------------------------- */
+.act-bg-01:hover{background-color: rgba(0,0,0, .1);}
+.act-bg-01:active{background-color: rgba(0,0,0, .2);}
+.act-bg-11:hover{background-color: rgba(255,255,255, .1);}
+.act-bg-11:active{background-color: rgba(255,255,255, .2);}
+/* -------------------------- */
+/* The Gray */
+.act-gray .son-gray,.act-gray.son-gray{-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);}
+.act-gray:hover .son-gray,.act-gray:hover.son-gray{-webkit-filter: grayscale(0%);-moz-filter: grayscale(0%);-ms-filter: grayscale(0%);-o-filter: grayscale(0%);filter: grayscale(0%);}
+/* -------------------------- */
+.act-house .son-house, .act-neighbor ~ .son-house{opacity: 0; visibility: hidden;}
+.act-house:hover .son-house, .act-house:focus .son-house, .act-house:active .son-house,
+.act-neighbor:hover ~ .son-house, .act-neighbor:focus ~ .son-house, .act-neighbor:active ~ .son-house{visibility: visible;opacity: 1;}
+
+.act-house .son-own-h{max-width: 0; overflow: hidden;}
+.act-house:hover .son-own-h, .act-house:focus .son-own-h{max-width: 1000px;}
+
+.act-house .son-own-v{max-height: 0; overflow: hidden;}
+.act-house:hover .son-own-v, .act-house:focus .son-own-v{max-height: 500px;}
+
+/* -------------------------- */
+.act-matrix:hover{transform: translateX(7px);}
+/* -------------------------- */
+/* toggle */
+.act-tgg .icon-bar{
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+    margin: 0!important;
+}
+.act-tgg .ib-bar{position: absolute;transform: translate(-50%, -50%);left:50%;top:50%;}
+.act-tgg .icon-bar:first-child{transform: translate(-50%, -7px);}
+.act-tgg .icon-bar:nth-child(3){transform: translate(-50%, 5px);}
+
+.act-tgg[aria-expanded*="true"] .icon-bar{opacity: 0;}
+.act-tgg[aria-expanded*="true"] .icon-bar:first-child{opacity: 1;transform: translate(-50%, -1px) rotate(-45deg);}
+.act-tgg[aria-expanded*="true"] .icon-bar:nth-child(3){opacity: 1;transform: translate(-50%, -1px) rotate(45deg);}
+/* -------------------------- */
+/* @keyframes */
+.anm-rotate{
+    animation: rotate 10s linear infinite;
+    position: absolute;
+}
+
+@keyframes rotate{
+    from{ transform: rotate(0deg); left:-20%;}
+    to{ transform: rotate(720deg);left:100%;}
+}
+/* -------------------------- */
+.anm-rise{animation: a-rise 3s 1s ease-in-out normal; animation-fill-mode: forwards;}
+@keyframes a-rise{
+    from{max-height: 0;}
+    to{max-height: 1000px;}
+}

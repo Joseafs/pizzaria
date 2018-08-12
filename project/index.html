@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+    <? include("web_head.php");?>
+    <body class="<?=$metatags['class']?>">
+        <!--<div class='anm-loading'><div class="ib-load"><i></i><i></i><i></i><i></i><i></i></div></div>-->
+        <section class="container-fluid text-center pos-rel ovr-h">
+            <div class="pdg-10 bg-red text-success bg-success">
+                <div id="app">
+                    {{ message }}
+                </div>
+            </div>
+        </section>
+        <link type="text/css" rel="stylesheet" href="library/bootstrap/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="library/bootstrap/css/bootstrap-theme.min.css">
+        <link type="text/css" rel="stylesheet" href="library/bootstrap/css/bootstrap-select.css">
+
+        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.css"> -->
+        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.sm-md-gt.css"> -->
+        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.mana.css"> -->
+        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-style.css"> -->
+        <script type="text/javascript" src="library/js/jquery.min.js"></script>
+     
+        <script type="text/javascript" src="library/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="library/bootstrap/js/bootstrap-select.min.js"></script>
+        <script type="text/javascript" src="library/js/vue.js"></script>
+        <!-- <script type="text/javascript" src="library/js/jquery.mask.min.js"></script> -->
+        <!-- <script type="text/javascript" src="library/js/jquery.fancybox.min.js"></script> -->
+
+        <!-- <script type="text/javascript" src="library/js/script.js"></script> -->
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue.js!'
+                }
+            })
+</script>
+    </body>
+</html>
