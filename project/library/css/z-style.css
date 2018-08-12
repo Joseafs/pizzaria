@@ -1,25 +1,40 @@
 /* -------------------------------------------------------------------------- */
-/* Fonts
+/* Fonts */
 @font-face {
-  font-family: 'Roboto Cond';
+  font-family: 'Metal';
   font-style: normal;
-  font-weight: 300;
-  src: url('../font/roboto_condensed/RobotoCondensed-Light.ttf') format('truetype');
+  font-weight: 400;
+  src: url('../font/metal/MetalMania-Regular.ttf') format('truetype');
 }
 @font-face {
-    font-family: "Material";
-    src:url("../font/icon/Material.eot");
-    src:url("../font/icon/Material.eot?#iefix") format("embedded-opentype"),
-      url("../font/icon/Material.woff") format("woff"),
-      url("../font/icon/Material.ttf") format("truetype"),
-      url("../font/icon/Material.svg#flat") format("svg"),
-      url("../font/icon/Material.ijmap") format("ijmap");
-    font-weight: normal;
-    font-style: normal;
-} */
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../font/roboto/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../font/roboto/Roboto-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../font/roboto/Roboto-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'trad';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../font/tradizional.otf') format('opentype');
+}
 
+.f-trad{font-family: 'trad', sans-serif;}
+.f-metal{font-family: 'Metal', sans-serif;}
 .f-rob{font-family: 'Roboto', sans-serif;}
-body{background-color: #fff;font-family: 'Open Sans', sans-serif;}
+body{background-color: #fff;font-family: 'Roboto', sans-serif;}
 section{min-height: 600px;}
 b, strong{font-weight: 900;}
 /* ------------------- */
@@ -82,6 +97,13 @@ btn-default {
     background-color: #fff;
     border-color: #ccc;
 }
+
+/* Input */
+/* .ipt-add{width: 50px;} */
+
+
+.align-middle{vertical-align: middle!important;}
+.square-35{height: 35px;width: 35px;}
 
 /* -------------------------------------------------------------------------- */
 @media all and (min-width: 1200px){}
