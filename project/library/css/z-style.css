@@ -103,8 +103,11 @@ btn-default {
 
 
 .align-middle{vertical-align: middle!important;}
-.square-35{height: 35px;width: 35px;}
+.ib-check{height: 40px;width: 50px;}
 
+/* -------------------------------------------------------------------------- */
+/* Z- adicional */
+.square-40{width: 40px; height: 40px;}
 /* -------------------------------------------------------------------------- */
 @media all and (min-width: 1200px){}
 @media all and (min-width: 992px){}

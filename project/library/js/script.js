@@ -2,58 +2,69 @@ vm = new Vue({
     el: '#pedido',
     data: {
         pizza: {
-            tamanho: '',
-            sabor: '',
-            adicional: {},
+            tamanho: 0,
+            sabor: 0,
         },
         config: {
             titulo: 'Pizzaria UDS',
             CNPJ: '...',
             endereco: 'Nildo Ribeiro'
         },
-        selected: 'A',
-        
         page: {
-            msg_1: '',
+            msg_1: 'Não se acanhe, monte o que seu estômago desejar ',
             msg_2: 'Quer deixar sua pizza mais interessante ? <br />basta se aventurar nas opções abaixo !',
         },
-        teste: 'Hello Vue.js!',
         tamanho: [
-            {id: 0, titulo: 'Pequena', valor: 'R$ 20,00', tempo: '15'},
-            {id: 1, titulo: 'Média', valor: 'R$ 30,00', tempo: '20'},
-            {id: 2, titulo: 'Grande', valor: 'R$ 40,00', tempo: '25'}
+            {id: 0, titulo: 'Pequena', valor: 20.00 , tempo: '15', status: ''},
+            {id: 1, titulo: 'Média', valor: 30.00 , tempo: '20', status: ''},
+            {id: 2, titulo: 'Grande', valor: 40.00 , tempo: '25', status: ''}
         ],
         sabor: [
-            {id: 0, titulo: 'Calabresa', valor: '', tempo: ''},
-            {id: 1, titulo: 'Marguerita', valor: '', tempo: ''},
-            {id: 2, titulo: 'Portuguesa', valor: '', tempo: '5'}
+            {id: 0, titulo: 'Calabresa', valor: 0, tempo: ''},
+            {id: 1, titulo: 'Marguerita', valor: 10, tempo: ''},
+            {id: 2, titulo: 'Portuguesa', valor: 0, tempo: '5'}
         ],
         adicional: [
-            {id: 0, titulo: 'Bacon', valor: '3,00', tempo: '', qtd: 0, opt: '',max_qtd: '10'},
-            {id: 1, titulo: 'Cebola', valor: '', tempo: '',  qtd: 0, opt: ['Sim','Não'], max_qtd: '1'},
-            {id: 2, titulo: 'Borda Recheada', valor: '5,00', tempo: '5', qtd: 0, opt: '', max_qtd: '2'}
+            {id: 0, titulo: 'Bacon', valor: 3.00 , tempo: '', qtd: 0, status: '',max_qtd: '4'},
+            {id: 1, titulo: 'Cebola', valor: 0, tempo: '',  qtd: 0, status: true, max_qtd: '1'},
+            {id: 2, titulo: 'Borda Recheada', valor: 5.00, tempo: '5', qtd: 0, status: '', max_qtd: '2'}
         ],
         msg_max: 'Wow, chegou no limite de incrementos que pode adicionar, iremos colocar um adicional de brinde, hehehe !',
-        vl_total: 10
+        vl_total: 0
     },
     methods: {
-        low_string: function () {
-            // info = this.el = this.el.split(' ').join('_').toLowerCase();
-            console.log('passou');
-            // return info;
+        count_add: function (i) {
+            if(i.qtd >= i.max_qtd){
+                alert(this.msg_max);
+            } else{
+                i.qtd ++;
+            }
         },
-        count_vt: function (v) {
-            // info = this.el = this.el.split(' ').join('_').toLowerCase();
-            console.log(this.vl_total);
-            // return info;
+        count_less: function (i) {
+            if(i.qtd <= 0){
+            } else{
+                i.qtd --;
+            }
         },
         save: function() {
-            console.log(this.pizza);
             console.log(this.pizza.tamanho);
-            console.log('salvo');
         }
+    },
+    watch: {
+        pizza: {
+          handler: function() {
+            var tm,v_tm, sb, v_sb;
+            tm = this.pizza.tamanho;
+            sb = this.pizza.sabor;
 
-    }
+            v_tm = this.tamanho[tm].valor;
+            v_sb = this.sabor[sb].valor;
+
+            this.vl_total =  v_tm + v_sb;
+        },
+          deep: true
+        }
+      }
 })
 
 /* -------------------------------------------------------------------------- */
