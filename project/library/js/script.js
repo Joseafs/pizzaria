@@ -6,9 +6,9 @@ vm = new Vue({
             sabor: 0,
         },
         config: {
-            titulo: 'Pizzaria UDS',
+            titulo: 'Pizzaria',
             CNPJ: '...',
-            endereco: 'Nildo Ribeiro'
+            endereco: 'Lorem Ipsum sit, amet 6699'
         },
         page: {
             msg_1: 'Não se acanhe, monte o que seu estômago desejar ',
@@ -29,19 +29,24 @@ vm = new Vue({
             {id: 1, titulo: 'Cebola', valor: 0, tempo: '',  qtd: 0, status: true, max_qtd: '1'},
             {id: 2, titulo: 'Borda Recheada', valor: 5.00, tempo: '5', qtd: 0, status: '', max_qtd: '2'}
         ],
-        msg_max: 'Wow, chegou no limite de incrementos que pode adicionar, iremos colocar um adicional de brinde, hehehe !',
+        // msg_max: 'Wow, '+txt+', iremos colocar um adicional de brinde, hehehe !',
+        // msg_max: 'Wow, chegou no limite de incrementos que pode adicionar, iremos colocar um adicional de brinde, hehehe !',
         vl_total: 0
     },
     methods: {
+        msg: function(i) {
+            alert(i);
+        },
         count_add: function (i) {
             if(i.qtd >= i.max_qtd){
-                alert(this.msg_max);
+                this.msg('Wow, você chegou no limite de '+i.titulo+' que pode adicionar, por conta disso, iremos adicionar um brinde, hehehe !');
             } else{
                 i.qtd ++;
             }
         },
         count_less: function (i) {
             if(i.qtd <= 0){
+                this.msg('Omg, pq tanto ódio nesse coração ? Adicione um pouco de '+i.titulo+' e faça seu estomago feliz :D !');
             } else{
                 i.qtd --;
             }
@@ -49,6 +54,7 @@ vm = new Vue({
         save: function() {
             console.log(this.pizza.tamanho);
         }
+        
     },
     watch: {
         pizza: {
