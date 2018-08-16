@@ -1,37 +1,40 @@
 vm = new Vue({
-    el: '#pedido',
+    el: '#website',
     data: {
         pizza: {
-            tamanho: 0,
-            sabor: 0,
+            size: 0,
+            taste: 0,
+            inc: 0,
+            craft: [],
         },
         config: {
-            titulo: 'Pizzaria',
-            CNPJ: '...',
-            endereco: 'Lorem Ipsum sit, amet 6699'
+            title: 'Pizzaria',
+            descricao: 'Pizzas sob medida para seu estômago e para todas ocasiões',
+            key: 'Pizza, quiejo, pizzaria, calabreza, marguerita, portuguesa, bacon',
+            author: 'José André Fernandes Sabino',
+            address: 'Lorem Ipsum sit, amet 6699'
         },
         page: {
             msg_1: 'Não se acanhe, monte o que seu estômago desejar ',
             msg_2: 'Quer deixar sua pizza mais interessante ? <br />basta se aventurar nas opções abaixo !',
         },
-        tamanho: [
-            {id: 0, titulo: 'Pequena', valor: 20.00 , tempo: '15', status: ''},
-            {id: 1, titulo: 'Média', valor: 30.00 , tempo: '20', status: ''},
-            {id: 2, titulo: 'Grande', valor: 40.00 , tempo: '25', status: ''}
+        size: [
+            {id: 0, title: 'Pequena', value: '20.00' , time: '15', status: ''},
+            {id: 1, title: 'Média', value: '30.00' , time: '20', status: ''},
+            {id: 2, title: 'Grande', value: '40.00' , time: '25', status: ''}
         ],
-        sabor: [
-            {id: 0, titulo: 'Calabresa', valor: 0, tempo: ''},
-            {id: 1, titulo: 'Marguerita', valor: 10, tempo: ''},
-            {id: 2, titulo: 'Portuguesa', valor: 0, tempo: '5'}
+        taste: [
+            {id: 0, title: 'Calabresa', value: '0', time: '0'},
+            {id: 1, title: 'Marguerita', value: '0', time: '0'},
+            {id: 2, title: 'Portuguesa', value: '0', time: '5'}
         ],
-        adicional: [
-            {id: 0, titulo: 'Bacon', valor: 3.00 , tempo: '', qtd: 0, status: '',max_qtd: '4'},
-            {id: 1, titulo: 'Cebola', valor: 0, tempo: '',  qtd: 0, status: true, max_qtd: '1'},
-            {id: 2, titulo: 'Borda Recheada', valor: 5.00, tempo: '5', qtd: 0, status: '', max_qtd: '2'}
+        increments: [
+            {id: 0, title: 'Bacon', value: '3.00' , time: '0', qtd: '0', status: '',max_qtd: '15'},
+            {id: 1, title: 'Cebola', value: '0', time: '0',  qtd: '0', status: true, max_qtd: '1'},
+            {id: 2, title: 'Borda Recheada', value: '5.00', time: '5', qtd: '0', status: '', max_qtd: '4'}
         ],
-        // msg_max: 'Wow, '+txt+', iremos colocar um adicional de brinde, hehehe !',
-        // msg_max: 'Wow, chegou no limite de incrementos que pode adicionar, iremos colocar um adicional de brinde, hehehe !',
-        vl_total: 0
+        pizza_t: 0,
+        pizza_v: 0
     },
     methods: {
         msg: function(i) {
@@ -39,43 +42,70 @@ vm = new Vue({
         },
         count_add: function (i) {
             if(i.qtd >= i.max_qtd){
-                this.msg('Wow, você chegou no limite de '+i.titulo+' que pode adicionar, por conta disso, iremos adicionar um brinde, hehehe !');
+                this.msg('Wow, você chegou no limite de '+i.title+' que pode adicionar, por conta disso, iremos adicionar um brinde, hehehe !');
             } else{
                 i.qtd ++;
+                this.pizza.inc++;
             }
         },
         count_less: function (i) {
             if(i.qtd <= 0){
-                this.msg('Omg, pq tanto ódio nesse coração ? Adicione um pouco de '+i.titulo+' e faça seu estomago feliz :D !');
+                this.msg('Omg, pq tanto ódio nesse coração ? Adicione um pouco de '+i.title+' e faça seu estomago feliz :D !');
             } else{
                 i.qtd --;
+                this.pizza.inc++;
             }
         },
         save: function() {
-            console.log(this.pizza.tamanho);
-        }
-        
+            console.log(this.pizza.size);
+        },
+        butler: function(i){
+            for(item in i){
+                if($.isArray(i[item])){
+                    this.butler(i[item]);
+                } else{
+                    if('qtd' in i[item]){
+                        v = i[item].value * parseInt(i[item].qtd);
+                        t = i[item].time * parseInt(i[item].qtd);
+                    } else{
+                        v = i[item].value;
+                        t = i[item].time;
+                    }
+
+                    // console.log(i[item].time);
+                    console.log(t);
+
+                    this.pizza_v += parseFloat(v);
+                    this.pizza_t += parseFloat(t);
+                }
+            }
+        },
     },
     watch: {
         pizza: {
           handler: function() {
-            var tm,v_tm, sb, v_sb;
-            tm = this.pizza.tamanho;
-            sb = this.pizza.sabor;
+            sz = this.pizza.size;
+            ts = this.pizza.taste;
+            
+            size = this.size[sz];
+            taste = this.taste[ts];
 
-            v_tm = this.tamanho[tm].valor;
-            v_sb = this.sabor[sb].valor;
-
-            this.vl_total =  v_tm + v_sb;
-        },
-          deep: true
+            this.pizza.craft[0] = size;
+            this.pizza.craft[1] = taste;
+            this.pizza.craft[2] = this.increments;
+            
+            this.pizza_t = 0;
+            this.pizza_v = 0;
+            this.butler(this.pizza.craft);
+            },
+            deep: true
         }
       }
 })
 
 /* -------------------------------------------------------------------------- */
 /* Mask */
-// $(".data").mask("99/99/9999");
+$(".ib-number").mask("9");
 // $(".fone-ddd").mask("99");
 // $('.fone-cel').change(function(){
 //     var phone, element;
