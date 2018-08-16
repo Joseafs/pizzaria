@@ -45,18 +45,16 @@ b, strong{font-weight: 900;}
 .f-icon-rt-y{transform: rotateY(180deg);}
 /* ------------------- */
 /* Cores */
-.bg-first{background-color: #ff4e00!important;}
-.bg-second{background-color: #395b7c!important;}
-.bg-third{background-color: #00a6ec!important;}
+.bg-first{background-color: #639462!important;}
+.bg-second{background-color: #c12e2a!important;}
 
 .bg-f4{background-color: #f4f4f4;}
 .bg-e9ebec{background-color: #e9ebec}
 
-.c-first{color: #ff4e00!important;}
-.c-second{color: #395b7c!important;}
-.c-third{color: #00a6ec!important;}
+.c-first{color: #639462!important;}
+.c-second{color: #c12e2a!important;}
 
-.act-c-first:hover{color: #ff4e00!important;}
+.act-c-first:hover{color: #c12e2a!important;}
 
 ::-webkit-scrollbar-thumb{background-color:rgba(252, 45, 29, .8);}
 ::-webkit-scrollbar{width: 5px;}

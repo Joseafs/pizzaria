@@ -8,15 +8,17 @@ vm = new Vue({
             craft: [],
         },
         config: {
-            title: 'Pizzaria',
+            title: 'Pizzaria La Larica',
             descricao: 'Pizzas sob medida para seu estômago e para todas ocasiões',
             key: 'Pizza, quiejo, pizzaria, calabreza, marguerita, portuguesa, bacon',
             author: 'José André Fernandes Sabino',
-            address: 'Lorem Ipsum sit, amet 6699'
+            address: 'Lorem Ipsum sit, amet 6699',
+            // bar_color: '#c12e2a' /* secret... */
         },
         page: {
             msg_1: 'Não se acanhe, monte o que seu estômago desejar ',
             msg_2: 'Quer deixar sua pizza mais interessante ? <br />basta se aventurar nas opções abaixo !',
+            i_prod: 'Lista de Encomendas',
         },
         size: [
             {id: 0, title: 'Pequena', value: '20.00' , time: '15', status: ''},
@@ -31,18 +33,16 @@ vm = new Vue({
         increments: [
             {id: 0, title: 'Bacon', value: '3.00' , time: '0', qtd: '0', status: '',max_qtd: '15'},
             {id: 1, title: 'Cebola', value: '0', time: '0',  qtd: '0', status: true, max_qtd: '1'},
-            {id: 2, title: 'Borda Recheada', value: '5.00', time: '5', qtd: '0', status: '', max_qtd: '4'}
+            {id: 2, title: 'Borda Recheada', value: '5.00', time: '5', qtd: '0', status: '', max_qtd: '2'}
         ],
         pizza_t: 0,
         pizza_v: 0
     },
     methods: {
-        msg: function(i) {
-            alert(i);
-        },
+        msg: function(i) {alert(i);},
         count_add: function (i) {
             if(i.qtd >= i.max_qtd){
-                this.msg('Wow, você chegou no limite de '+i.title+' que pode adicionar, por conta disso, iremos adicionar um brinde, hehehe !');
+                this.msg('Wow, você chegou no limite de '+i.title+', por conta disso, iremos adicionar um brinde, hehehe !');
             } else{
                 i.qtd ++;
                 this.pizza.inc++;
@@ -56,8 +56,16 @@ vm = new Vue({
                 this.pizza.inc++;
             }
         },
+        load_list: function() {
+            this.list_order = JSON.parse(localStorage.getItem('list_order'));
+        },
         save: function() {
-            console.log(this.pizza.size);
+            order = this.pizza.craft;
+            localStorage.setItem('list_order', JSON.stringify(order));
+            this.load_list();
+
+            console.log(localStorage);
+
         },
         butler: function(i){
             for(item in i){
@@ -71,15 +79,16 @@ vm = new Vue({
                         v = i[item].value;
                         t = i[item].time;
                     }
-
-                    // console.log(i[item].time);
-                    console.log(t);
-
                     this.pizza_v += parseFloat(v);
                     this.pizza_t += parseFloat(t);
                 }
             }
         },
+    },
+    ready(){
+        this.load_list();
+
+        console.log(this.list_order);
     },
     watch: {
         pizza: {
@@ -100,7 +109,7 @@ vm = new Vue({
             },
             deep: true
         }
-      }
+    }
 })
 
 /* -------------------------------------------------------------------------- */
