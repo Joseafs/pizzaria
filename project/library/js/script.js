@@ -35,12 +35,14 @@ vm = new Vue({
             {id: 1, title: 'Cebola', value: '0', time: '0',  qtd: '0', status: true, max_qtd: '1'},
             {id: 2, title: 'Borda Recheada', value: '5.00', time: '5', qtd: '0', status: '', max_qtd: '2'}
         ],
+        list_request:[],
+        newCat: 'Loremalalal',
         pizza_t: 0,
         pizza_v: 0
     },
     methods: {
-        msg: function(i) {alert(i);},
-        count_add: function (i) {
+        msg(i) {alert(i);},
+        count_add(i) {
             if(i.qtd >= i.max_qtd){
                 this.msg('Wow, você chegou no limite de '+i.title+', por conta disso, iremos adicionar um brinde, hehehe !');
             } else{
@@ -48,7 +50,7 @@ vm = new Vue({
                 this.pizza.inc++;
             }
         },
-        count_less: function (i) {
+        count_less(i) {
             if(i.qtd <= 0){
                 this.msg('Omg, pq tanto ódio nesse coração ? Adicione um pouco de '+i.title+' e faça seu estomago feliz :D !');
             } else{
@@ -56,18 +58,18 @@ vm = new Vue({
                 this.pizza.inc++;
             }
         },
-        load_list: function() {
-            this.list_order = JSON.parse(localStorage.getItem('list_order'));
+        load_list() {
+            this.list_request = JSON.parse(localStorage.getItem('list_request'));
         },
-        save: function() {
-            order = this.pizza.craft;
-            localStorage.setItem('list_order', JSON.stringify(order));
-            this.load_list();
-
-            console.log(localStorage);
-
+        remove(x) {
+            // this.pizza.splice(x,1);
         },
-        butler: function(i){
+        save() {
+            this.list_request.push(this.pizza.craft);
+            let parsed = JSON.stringify(this.list_request);
+            localStorage.setItem('list_request', parsed);
+        },
+        butler(i){
             for(item in i){
                 if($.isArray(i[item])){
                     this.butler(i[item]);
@@ -87,8 +89,7 @@ vm = new Vue({
     },
     ready(){
         this.load_list();
-
-        console.log(this.list_order);
+        // console.log(this.list_request);
     },
     watch: {
         pizza: {
