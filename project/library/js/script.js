@@ -2,8 +2,8 @@ vm = new Vue({
     el: '#website',
     data: {
         pizza: {
-            size: 0,
-            taste: 0,
+            size: '',
+            taste: '',
             inc: 0,
             craft: [],
         },
@@ -36,7 +36,6 @@ vm = new Vue({
             {id: 2, title: 'Borda Recheada', value: '5.00', time: '5', qtd: '0', status: '', max_qtd: '2'}
         ],
         list_request:[],
-        newCat: 'Loremalalal',
         pizza_t: 0,
         pizza_v: 0
     },
@@ -59,15 +58,24 @@ vm = new Vue({
             }
         },
         load_list() {
-            this.list_request = JSON.parse(localStorage.getItem('list_request'));
+            if(localStorage.getItem('list_request')) {
+                this.list_request = JSON.parse(localStorage.getItem('list_request'));
+            }
+        },
+        add_order() {
+            this.pizza.craft.push({ 'order_v': this.pizza_v, 'order_t': this.pizza_t, 'status': 0});
+            this.list_request.push(this.pizza.craft);
+            this.pizza.craft = [];
+            this.save();
         },
         remove(x) {
-            // this.pizza.splice(x,1);
+            this.list_request.splice(x,1);
+            this.save();
         },
         save() {
-            this.list_request.push(this.pizza.craft);
             let parsed = JSON.stringify(this.list_request);
             localStorage.setItem('list_request', parsed);
+            this.load_list();
         },
         butler(i){
             for(item in i){
@@ -87,21 +95,22 @@ vm = new Vue({
             }
         },
     },
-    ready(){
-        this.load_list();
-        // console.log(this.list_request);
-    },
+    ready(){this.load_list();},
     watch: {
         pizza: {
           handler: function() {
             sz = this.pizza.size;
             ts = this.pizza.taste;
             
-            size = this.size[sz];
-            taste = this.taste[ts];
-
-            this.pizza.craft[0] = size;
-            this.pizza.craft[1] = taste;
+            
+            if(sz){
+                size = this.size[sz];
+                this.pizza.craft[0] = size;
+            }
+            if(ts){
+                taste = this.taste[ts];
+                this.pizza.craft[1] = taste;
+            }
             this.pizza.craft[2] = this.increments;
             
             this.pizza_t = 0;
@@ -116,42 +125,6 @@ vm = new Vue({
 /* -------------------------------------------------------------------------- */
 /* Mask */
 $(".ib-number").mask("9");
-// $(".fone-ddd").mask("99");
-// $('.fone-cel').change(function(){
-//     var phone, element;
-//     element = $(this);
-//     element.unmask();
-//     phone = element.val().replace(/\D/g, '');
-//     if(phone.length > 10) {
-//         element.mask("(99) 99999-9999");
-//     } else {
-//         element.mask("(99) 9999-99999");
-//     }
-// }).change();
-// $(".cpf").mask("999.999.999-99");
-// $(".cnpj").mask("99.999.999/9999-99");
-// $('.cpf-cnpj').change(function(){
-//     var reg, element;
-//     element = $(this);
-//     element.unmask();
-//     reg = element.val().replace(/\D/g, '');
-//     if(reg.length === 14) {
-//         element.mask("99.999.999/9999-99");
-//     } else if(reg.length === 11){
-//         element.mask("999.999.999-99999");
-//     } else {
-//         element.mask("99999999999999");
-//     }
-// }).change();
-
-// function block_number(evt){
-//     evt = (evt) ? evt : window.event;
-//     var charCode = (evt.which) ? evt.which : evt.keyCode;
-//     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-//         return false;
-//     }
-//     return true;
-// }
 /* -------------------------------------------------------------------------- */
 /* pz/pers */
 $('.selectpicker').selectpicker({

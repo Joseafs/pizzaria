@@ -25,74 +25,50 @@
                     <div class="row pos-rel">
                         <div class='col-sm-10 col-lg-6 col-xs-12 dsp-in-block flt-off'>
                             <h1 class="f-trad f-size-72 c-first">{{ config.title }}</h1>
-                            <form class='col-xs-12 form-info' @submit.prevent="save()">
+                            <form class='col-xs-12 form-info' @submit.prevent="add_order()">
                                 <div class='row pdg-t-30'>
-                                    <!-- <div class="form-group col-sm-6 col-xs-12">
-                                        <select class="form-control"  @input="pizza.size = $event.target.value" required title="size">
-                                            <option v-for="(index,item) in size" value="{{item.id}}">
-                                                {{ item.title }} - {{ item.value }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
-                                        <select class="form-control"  @input="pizza.taste = $event.target.taste" required title="taste">
-                                            <option v-for="(index,item) in taste" value="{{item.id}}">{{ item.title }}</option>
-                                        </select>
-                                    </div> -->
-                                    <!-- <div class="form-group col-sm-6 col-xs-12" >
-                                        <select class="form-control selectpicker show-tick" required name="taste" required data-live-search="true" data-size="6" title="taste">
-                                            <option v-for="(index,item) in taste"  data-subtext="{{item.value}}" value="{{item.id}}">
-                                                {{ item.title }}
-                                            </option>
-                                        </select>
-                                    </div> -->
-                                    <!-- <div class="form-group col-sm-6 col-xs-12">
-                                        <select v-model="vl_total">
-                                            <option v-for="option in size" v-bind:value="option.value">
-                                                {{ option.title }}
-                                            </option>
-                                        </select>
-                                        <span>Selected: {{ selected }}</span>
-                                    </div> -->
                                     <table class="table">
                                         <thead>
                                             <tr >
                                                 <th colspan="100%">
-                                                    <h2 class="f-trad c-second text-center" v-html="page.msg_1"></h2>
+                                                    <h2 class="f-trad h1 c-second text-center" v-html="page.msg_1"></h2>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr >
+                                            <tr>
                                                 <td class="align-middle text-left"><h4>Tamanho</h4></td>
-                                                <td class="text-right">
-                                                    <div class="dsp-in-block">
+                                                <td width='70%' class="text-right align-middle">
+                                                    <div class="wd-100">
                                                         <label class="dsp-middle" v-for="(key,item) in size" >
-                                                            <input class="square-25" type="radio" id="one" value="{{ key }}" v-model="pizza.size">
-                                                            <span class='pdg-t-10 pdg-l-15'>
-                                                                {{ item.title }}
-                                                                <b v-if="item.value !== ''">- R$ {{ item.value }}</b>
-                                                            </span>
+                                                            <div class="wd-25">
+                                                                <input class="square-25" type="radio" id="one" value="{{ key }}" v-model="pizza.size">
+                                                            </div>
+                                                            <div class="wd-25">{{ item.title }}</div>
+                                                            <div class="wd-25" v-if="item.value > 0">R$ {{ item.value }}</div>
+                                                            <div class="wd-25" v-if="item.value > 0">{{ item.time }}min</div>
                                                         </label>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr v-if="pizza.size.length">
                                                 <td class="align-middle text-left"><h4>Sabor</h4></td>
-                                                <td class="text-right align-middle">
-                                                    <div class="dsp-in-block">
+                                                <td width='70%' class="text-right align-middle">
+                                                    <div class="wd-100">
                                                         <label class="dsp-middle" v-for="(key,item) in taste" >
-                                                            <input class="square-25" type="radio" id="two" value="{{ key }}" v-model="pizza.taste">
-                                                            <span class='pdg-t-10 pdg-l-15'>
-                                                                {{ item.title }}
-                                                                <b v-if="item.value !== ''">- R$ {{ item.value }}</b>
-                                                            </span>
+                                                            <div class="wd-25">
+                                                                <input class="square-25" type="radio" id="one" value="{{ key }}" v-model="pizza.taste">
+                                                            </div>
+                                                            <div class="wd-25">{{ item.title }}</div>
+                                                            <div class="wd-25" v-if="item.value > 0">R$ {{ item.value }}</div>
+                                                            <div class="wd-25" v-if="item.value > 0">{{ item.time }}min</div>
                                                         </label>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
-                                            <tr><th colspan="100%"><h2 class="f-trad  c-second text-center" v-html="page.msg_2"></h2></th></tr>
+                                        <tbody v-if="pizza.taste.length">
+                                            <tr><th colspan="100%"><h2 class="f-trad h1 c-second text-center" v-html="page.msg_2"></h2></th></tr>
                                             <tr v-for="(index,item) in increments">
                                                 <td class="align-middle text-left"><h4 class="dsp-middle">
                                                     <div v-if="item.status !== ''">
@@ -126,8 +102,8 @@
                                     </table>
                                     <div class="divider bg-opc-06 col-xs-12"></div>
                                 </div>
-                                <div class="row pdg-t-10 pdg-b-40">
-                                    <div class="row sm-text-left-f">
+                                <div class="row pdg-t-20 pdg-b-40">
+                                    <div class="row">
                                         <div class="col-sm-6 col-xs-12 c-0 f-trad f-size-42">
                                             value: {{ pizza_v }}
                                         </div>
@@ -136,26 +112,56 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12 pdg-t-20">
-                                            <button class="btn-success rad-3 pdg-15 col-xs-12" type="submit">Enviar</button>
-                                        </div>
-                                        <div class="col-sm-6 col-xs-12 pdg-t-20">
-                                            <button class="btn-danger rad-3 pdg-15 col-xs-12" >Cancelar</button>
+                                        <div class="col-xs-12 pdg-t-20">
+                                            <button class="btn-success rad-3 pdg-10 col-xs-12 f-size-24" type="submit">Salvar</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+                            <div class="col-xs-12" v-if="list_request.length">
+                                <div class='row pdg-t-30 pdg-b-60 text-left'>
+                                    <div class="col-xs-12">
+                                        <h2 class="f-trad c-second text-center h1" v-html="page.i_prod"></h2>
+                                    </div>
+                                    <div class="col-xs-12 mgn-t-10 sdw-i-1 rad-5 ovr-h" v-for="(l, i_list) in list_request">
+                                        <h3 class="text-center f-bold c-first">Pedido: {{l}}</h3>
+                                        <div class="col-xs-12 pdg-0 mgn-t-5" v-for="(p, i_pizza) in i_list">
+                                            <div class="col-xs-12 bg-success pdg-15 rad-3 c-0 f-bold text-center"  v-if="i_pizza.title.length">
+                                                {{i_pizza.title}}
+                                            </div>
 
-                            <div class='row pdg-t-30 pdg-b-60 text-left'>
-                                <div class="col-xs-12">
-                                    <h2 class="f-trad c-second text-center" v-html="page.i_prod"></h2>
+                                            <div v-if="i_pizza.length">
+                                                <h4 class='text-info text-center'>Adicionais</h4>
+                                                <div class="sdw-i-1 pdg-5 mgn-b-5 rad-3" v-if="attr.qtd >= 1 || attr.status !== ''" v-for="(a, attr) in i_pizza">
+                                                    <div class="dsp-middle" v-if="attr.status !== ''">
+                                                        <span class="f-bold" v-if="attr.status">Com&nbsp;</span>
+                                                        <span class="f-bold" v-else="attr.status">Sem&nbsp;</span>
+                                                        {{attr.title }}
+                                                    </div>
+                                                    <div v-else>
+                                                        {{ attr.qtd }}x {{ attr.title }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pdg-b-15">
+                                                <div class="col-sm-6 col-xs-12 pdg-b-5" v-if="i_pizza.order_v ">
+                                                    <div class="col-xs-12 bg-info pdg-15 rad-3 c-0 f-bold text-center">
+                                                        Valor do Pedido: {{ i_pizza.order_v}} R$
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12 pdg-b-5" v-if="i_pizza.order_t ">
+                                                    <div class="col-xs-12 bg-info pdg-15 rad-3 c-0 f-bold text-center">
+                                                        Tempo: {{ i_pizza.order_t}} Minutos
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button class="pdg-10 btn-danger c-1 wd-100" @click='remove(l)'>Excluir</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xs-12 pdg-0 bg-red mgn-t-10" v-for="list in list_request">
-                                    {{list}}
-                                </div>
-                                <div class="divider bg-opc-06 col-xs-12 mgn-b-60"></div>
                             </div>
-                            <div class="min-hg-200p col-xs-12 bg-bisque"></div>
                         </div>
                     </div>
                 </div>
@@ -167,7 +173,6 @@
 
         <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.css">
         <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.sm-md-gt.css">
-        <!-- <link type="text/css" rel="stylesheet" href="library/css/z-endless-dreams.mana.css"> -->
         <link type="text/css" rel="stylesheet" href="library/css/z-style.css">
         <script type="text/javascript" src="library/js/jquery.min.js"></script>
         
@@ -176,66 +181,6 @@
         <script type="text/javascript" src="library/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="library/bootstrap/js/bootstrap-select.min.js"></script>
         <script type="text/javascript" src="library/js/jquery.mask.min.js"></script>
-        <!-- <script type="text/javascript" src="library/js/jquery.fancybox.min.js"></script> -->
         <script type="text/javascript" src="library/js/script.js"></script>
     </body>
 </html>
-<!-- 
-<tbody v-for="list in list_order">
-    <tr  v-for="(j, ctg) in list" >
-        <td class="align-middle">{{j}}</td>
-        <td class="text-right">
-
-            <div class="dsp-in-block">
-                <label class="dsp-middle" v-for="(i, item) in ctg">
-                    <input class="square-25"  type="radio" id="{{j}}_grp" name="{{j}}" value="{{ item.title }}" v-model="pizza.j">
-                    <span class='pdg-t-10 pdg-l-15'>
-                        {{ i }} - {{ item.title }}
-                        <b v-if="item.value !== ''">- {{ item.value }}</b>
-                    </span>
-                </label>
-            </div>
-        </td>
-    </tr>
-</tbody> -->
-<!-- 
-<tbody v-for="list in list_order">
-    <tr  v-for="(j, ctg) in list" >
-        <td class="align-middle">{{j}}</td>
-        <td class="text-right">
-
-            <div class="dsp-in-block">
-                <label class="dsp-middle" v-for="(i, item) in ctg">
-                    <input class="square-25"  type="radio" id="{{j}}_grp" name="{{j}}" value="{{ item.title }}" v-model="pizza.j">
-                    <span class='pdg-t-10 pdg-l-15'>
-                        {{ i }} - {{ item.title }}
-                        <b v-if="item.value !== ''">- {{ item.value }}</b>
-                    </span>
-                </label>
-            </div>
-        </td>
-    </tr>
-</tbody> -->
-
-
-<!-- <tbody>
-        <tr v-for="(index,item) in increments" >
-        <td class="align-middle">{{ item.title }}</td>
-        <td class="text-right" v-if="item.opt !== ''">
-
-        <label class="dsp-middle" v-for="opt in item.opt" >
-            <input class="square-25" name="atributo" value="{{ item.id }}" type="checkbox">
-            {{ opt }} 
-        </label>
-        </td>
-        <td class="text-right" v-else>
-        <div class="dsp-in-block">
-            <div class="dsp-middle">
-                <input class="form-control ipt-add text-center square-35 mgn-r-15" name="atributo" type="text" min="0" max="3" value='{{ item.qtd }}'>
-                <button type="button" class="btn btn-success" class="btn" v-on:click="item.qtd++">+</button>
-                <button type="button" class="btn btn-danger" v-on:click="item.qtd--">-</button>
-            </div>
-        </div>
-        </td>
-        </tr>
-    </tbody> -->
